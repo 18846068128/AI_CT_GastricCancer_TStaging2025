@@ -1,35 +1,42 @@
-# CT Medical Image Classification System (T1-T4 Staging) 
-Deep learning-based CT image classification tool supporting ResNet/DenseNet/VGG architectures for T1-T4 stage prediction
+# CT Medical Image Classification System (T1-T4 Staging)  
 
-[![PyTorch Version](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![PyTorch Version](https://img.shields.io/badge/PyTorch-2.0+-red.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue.svg)
 
-![Architecture Diagram](docs/architecture.png) <!-- Recommended to add visual abstract -->
+Deep learning-based CT image classification tool supporting ResNet/DenseNet/VGG architectures for T1-T4 stage prediction.
+
+![Architecture Diagram](docs/architecture.png)
 
 ## Table of Contents
-- [Key Features](#key-features)
-- [Getting Started](#-getting-started)
-- [Project Structure](#-project-structure)
-- [Configuration Options](#-configuration-options)
-- [Performance Evaluation](#-performance-evaluation)
-- [Contributing](#-contributing)
+- [✨ Key Features](#-key-features)
+- [🚀 Getting Started](#-getting-started)
+  - [System Requirements](#system-requirements)
+  - [Installation](#installation)
+  - [Basic Usage](#basic-usage)
+- [📁 Project Structure](#-project-structure)
+- [⚙️ Configuration Options](#️-configuration-options)
+- [📊 Performance Evaluation](#-performance-evaluation)
+- [🤝 Contributing](#-contributing)
 
-## Key Features
-- Supports three mainstream CNN architectures: ResNet-152, DenseNet-169, VGG-19
--  Automatic generation of classification metrics (Precision/Recall/F1-score)
--  Real-time prediction logging during training
--  GPU acceleration support (automatic device detection)
-- Comprehensive data augmentation pipeline
+## ✨ Key Features
+- **Multi-Architecture Support**: Choose between ResNet-152, DenseNet-169, or VGG-19
+- **Comprehensive Metrics**: Automatic generation of precision/recall/F1-score reports
+- **Training Visualization**: Real-time prediction logging and progress tracking
+- **GPU Acceleration**: Automatic detection and utilization of available GPUs
+- **Advanced Augmentation**: Built-in pipeline for robust model training
+- **Model Management**: Save/load functionality with training checkpointing
 
-##  Getting Started
+## 🚀 Getting Started
 
 ### System Requirements
-- Python 3.8+
-- CUDA 11.3+ (Recommended for GPU acceleration)
-- Minimum 8GB RAM
+- **Python**: 3.8 or higher
+- **CUDA**: 11.3+ (Recommended for GPU acceleration)
+- **RAM**: Minimum 8GB (16GB recommended)
+- **Storage**: SSD with minimum 10GB free space
 
 ### Installation
-1. Clone repository:
+1. Clone the repository:
 ```bash
 git clone https://github.com/yourname/ct-classification.git
 cd ct-classification
@@ -37,60 +44,77 @@ cd ct-classification
 1.Install dependencies:
 pip install -r requirements.txt
 
-2.Prepare data:
+2.Prepare your data structure:
 data/
-├── images/      # Store all CT images (JPEG/PNG format)
-└── labels.csv   # CSV file with columns: image_name, label
+├── images/       # Store all CT images (JPEG/PNG format)
+└── labels.csv    # CSV file with columns: [image_name, label]
 
 Basic Usage
-Train ResNet-152 model:
+Train a model with default parameters (ResNet-152):
 python src/train.py \
   --data_dir ./data/images \
-  --csv_file ./data/labels.csv \
-  --model resnet152 \
+  --csv_file ./data/labels.csv
+
+For custom training (example with DenseNet-169):
+python src/train.py \
+  --model densenet169 \
   --batch_size 64 \
   --lr 0.001 \
-  --epochs 300
+  --epochs 50 \
+  --save_dir ./custom_models
 
-Project Structure
+📁 Project Structure
 ct-classification/
-├── data/                # Raw imaging data (Git ignored)
-├── models/              # Trained model weights
+├── data/                # Raw imaging data (.gitignore)
+├── docs/                # Documentation assets
+├── models/              # Trained model checkpoints
 ├── outputs/             # Training outputs
-│   ├── predictions/     # Prediction results in CSV format
+│   ├── predictions/     # Prediction results (CSV)
+│   ├── logs/            # Training logs
+│   └── visualizations/  # Confusion matrices
 ├── src/                 # Source code
 │   ├── dataset.py       # Data loading & preprocessing
 │   ├── model.py         # Model initialization
-│   └── train.py         # Main training pipeline
-├── requirements.txt     # Dependency list
-└── README.md            # Documentation
-Configuration Options
-Customize training through command-line arguments:
-python src/train.py --help  # Display all available parameters
+│   ├── train.py         # Main training pipeline  
+├── requirements.txt     # Python dependencies
+└── README.md            # Project documentation
 
-Essential parameters:
-  --model        Architecture selection (resnet152/densenet169/vgg19) [default: resnet152]
-  --batch_size   Batch size [default: 32]
-  --lr           Learning rate [default: 0.001]
-  --epochs       Training epochs [default: 10]
-  --augment      Enable data augmentation [default: True]
-  --seed         Random seed [default: 42]
+⚙️ Configuration Options
+Run python src/train.py --help to see all available parameters:
 
-Performance Evaluation
-Training outputs include:
-
-.pth model files in models/
-Prediction CSV files in outputs/predictions/
-Detailed classification report:
+Parameter	Description	Default	Options
+--model	Model architecture	resnet152	resnet152/densenet169/vgg19
+--batch_size	Training batch size	32	Integer > 0
+--lr	Initial learning rate	0.001	Float > 0
+--epochs	Number of training epochs	10	Integer > 0
+--augment	Enable data augmentation	True	True/False
+--seed	Random seed for reproducibility	42	Integer
+--save_dir	Directory to save models	./models	Valid path
+📊 Performance Evaluation
+Example classification report:
               precision    recall  f1-score   support
 
-         T1       0.92      0.91      0.92       203
-         T2       0.89      0.93      0.91       198
-         T3       0.95      0.88      0.92       210
-         T4       0.90      0.94      0.92       189
+         T1       0.92      0.91      0.92       240
+         T2       0.89      0.93      0.91       235
+         T3       0.95      0.88      0.92       238
+         T4       0.90      0.94      0.92       240
 
-    accuracy                           0.91       800
-   macro avg       0.91      0.91      0.91       800
-weighted avg       0.91      0.91      0.91       800
+    accuracy                           0.91       953
+   macro avg       0.91      0.91      0.91       953
+weighted avg       0.91      0.91      0.91       953
 
+Outputs include:
 
+1.Trained models (.pth) in specified save directory
+2.Prediction results in CSV format
+3.Training logs and metrics
+4.Visualizations (confusion matrices)
+
+🤝 Contributing
+We welcome contributions! Please follow these steps:
+
+1.Fork the repository
+2.Create your feature branch (git checkout -b feature/your-feature)
+3.Commit your changes (git commit -am 'Add some feature')
+4.Push to the branch (git push origin feature/your-feature)
+5.Open a Pull Request
