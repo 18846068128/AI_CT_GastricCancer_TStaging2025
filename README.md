@@ -6,7 +6,7 @@
 
 Deep learning-based CT image classification tool supporting ResNet/DenseNet/VGG architectures for T1-T4 stage prediction.
 
-![Architecture Diagram](main/architecture.png)
+![Architecture Diagram](architecture.png)
 
 ## Table of Contents
 - [✨ Key Features](#-key-features)
@@ -37,35 +37,46 @@ Deep learning-based CT image classification tool supporting ResNet/DenseNet/VGG 
 
 ### Installation
 1. Clone the repository:
-```bash
+
+```
 git clone https://github.com/18846068128/AI_CT_GastricCancer_TStaging2025.git
 cd AI_CT_GastricCancer_TStaging20251.Install dependencies:
+```
 
 1.Install dependencies:
-```bash
+
+```
 pip install -r requirements.txt
+```
 
 1.Prepare your data structure:
-```bash
+
+```
 data/
 ├── images/       # Store all CT images (JPEG/PNG format)
 └── labels.csv    # CSV file with columns: [image_name, label]
+```
+
 ### Basic Usage
 Train a model with default parameters (ResNet-152):
-```bash
+
+```
 python src/train.py \
   --data_dir ./data/images \
   --csv_file ./data/labels.csv
 For custom training (example with DenseNet-169):
-```bash
+```
+
+```
 python src/train.py \
   --model densenet169 \
   --batch_size 64 \
   --lr 0.001 \
   --epochs 50 \
   --save_dir ./custom_models
+```
+
 ## 📁 Project Structure
-```bash
 ct-classification/
 ├── data/                # Raw imaging data (.gitignore)
 ├── models/              # Trained model checkpoints
@@ -91,7 +102,6 @@ Parameter	Description	Default	Options
 --save_dir	Directory to save models	./models	Valid path
 ## 📊 Performance Evaluation
 Example classification report:
-```bash
               precision    recall  f1-score   support
 
          T1       0.92      0.91      0.92       240
