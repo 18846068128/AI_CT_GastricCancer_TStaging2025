@@ -77,6 +77,8 @@ python src/train.py \
 ```
 
 ## 📁 Project Structure
+
+```
 AI_CT_GastricCancer_TStaging2025/
 ├── data/ # Raw imaging data (.gitignore)
 │ ├── images/ # CT image directory
@@ -92,9 +94,16 @@ AI_CT_GastricCancer_TStaging2025/
 ├── requirements.txt # Python dependencies
 ├── architecture.png # System architecture diagram
 └── README.md # Project documentation
-## ⚙️ Configuration Options
-Run python src/train.py --help to see all available parameters:
+```
 
+## ⚙️ Configuration Options
+Run the following command to see all available parameters:
+
+```
+python src/train.py --help
+```
+
+```
 Parameter	Description	Default	Options
 --model	Model architecture	resnet152	resnet152/densenet169/vgg19
 --batch_size	Training batch size	32	Integer > 0
@@ -103,6 +112,8 @@ Parameter	Description	Default	Options
 --augment	Enable data augmentation	True	True/False
 --seed	Random seed for reproducibility	42	Integer
 --save_dir	Directory to save models	./models	Valid path
+```
+
 ## 📊 Performance Evaluation
 Example classification report:
               precision    recall  f1-score   support
