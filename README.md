@@ -78,17 +78,20 @@ python src/train.py \
 
 ## 📁 Project Structure
 AI_CT_GastricCancer_TStaging2025/
-├── data/                # Raw imaging data (.gitignore)
-├── models/              # Trained model checkpoints
-├── outputs/             # Training outputs
-│   ├── predictions/     # Prediction results (CSV)
-├── src/                 # Source code
-│   ├── dataset.py       # Data loading & preprocessing
-│   ├── model.py         # Model initialization
-│   ├── train.py         # Main training pipeline  
-├── requirements.txt     # Python dependencies
-├── architecture.png
-└── README.md            # Project documentation
+├── data/ # Raw imaging data (.gitignore)
+│ ├── images/ # CT image directory
+│ └── labels.csv # Image-label mappings
+├── models/ # Trained model checkpoints (.pth files)
+│ ├── model.pth
+├── outputs/ # Training outputs
+│ ├── predictions/ # Prediction results (CSV format)
+├── src/ # Source code
+│ ├── dataset.py # Data loading & preprocessing
+│ ├── model.py # Model architecture definitions
+│ └── train.py # Main training pipeline
+├── requirements.txt # Python dependencies
+├── architecture.png # System architecture diagram
+└── README.md # Project documentation
 ## ⚙️ Configuration Options
 Run python src/train.py --help to see all available parameters:
 
