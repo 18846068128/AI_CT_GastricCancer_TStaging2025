@@ -63,7 +63,7 @@ python src/train.py \
   --epochs 50 \
   --save_dir ./custom_models
 
-📁 Project Structure
+##📁 Project Structure
 ct-classification/
 ├── data/                # Raw imaging data (.gitignore)
 ├── models/              # Trained model checkpoints
@@ -77,7 +77,7 @@ ct-classification/
 ├── requirements.txt     # Python dependencies
 └── README.md            # Project documentation
 
-⚙️ Configuration Options
+##⚙️ Configuration Options
 Run python src/train.py --help to see all available parameters:
 
 Parameter	Description	Default	Options
@@ -88,7 +88,7 @@ Parameter	Description	Default	Options
 --augment	Enable data augmentation	True	True/False
 --seed	Random seed for reproducibility	42	Integer
 --save_dir	Directory to save models	./models	Valid path
-📊 Performance Evaluation
+##📊 Performance Evaluation
 Example classification report:
               precision    recall  f1-score   support
 
@@ -108,7 +108,7 @@ Outputs include:
 3.Training logs and metrics
 4.Visualizations (confusion matrices)
 
-🤝 Contributing
+##🤝 Contributing
 We welcome contributions! Please follow these steps:
 
 1.Fork the repository
