@@ -1,4 +1,4 @@
-# CT Medical Image Classification System (T1-T4 Staging)  
+#AI CT Gastric Cancer T-Staging System (2025)
 
 ![PyTorch Version](https://img.shields.io/badge/PyTorch-2.0+-red.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
@@ -43,13 +43,13 @@ git clone https://github.com/18846068128/AI_CT_GastricCancer_TStaging2025.git
 cd AI_CT_GastricCancer_TStaging20251.Install dependencies:
 ```
 
-1.Install dependencies:
+Install dependencies:
 
 ```
 pip install -r requirements.txt
 ```
 
-1.Prepare your data structure:
+Prepare your data structure:
 
 ```
 data/
@@ -77,7 +77,7 @@ python src/train.py \
 ```
 
 ## 📁 Project Structure
-ct-classification/
+AI_CT_GastricCancer_TStaging2025/
 ├── data/                # Raw imaging data (.gitignore)
 ├── models/              # Trained model checkpoints
 ├── outputs/             # Training outputs
