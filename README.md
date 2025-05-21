@@ -40,21 +40,19 @@ Deep learning-based CT image classification tool supporting ResNet/DenseNet/VGG 
 ```bash
 git clone https://github.com/yourname/ct-classification.git
 cd ct-classification
-
 1.Install dependencies:
 pip install -r requirements.txt
 
-2.Prepare your data structure:
+1.Prepare your data structure:
 data/
 ├── images/       # Store all CT images (JPEG/PNG format)
 └── labels.csv    # CSV file with columns: [image_name, label]
-
 Basic Usage
 Train a model with default parameters (ResNet-152):
+
 python src/train.py \
   --data_dir ./data/images \
   --csv_file ./data/labels.csv
-
 For custom training (example with DenseNet-169):
 python src/train.py \
   --model densenet169 \
@@ -62,10 +60,7 @@ python src/train.py \
   --lr 0.001 \
   --epochs 50 \
   --save_dir ./custom_models
-
-## 📁 Project Structure
-
-
+📁 Project Structure
 ct-classification/
 ├── data/                # Raw imaging data (.gitignore)
 ├── docs/                # Documentation assets
@@ -79,27 +74,20 @@ ct-classification/
 │   ├── train.py         # Main training pipeline  
 ├── requirements.txt     # Python dependencies
 └── README.md            # Project documentation
+⚙️ Configuration Options
+Run python src/train.py --help to see all available parameters:
 
-
-## ⚙️ Configuration Options
-
-Run `python src/train.py --help` to see all available parameters:
-
-| Parameter       | Description                      | Default     | Options                     |
-|-----------------|----------------------------------|-------------|-----------------------------|
-| `--model`       | Model architecture               | `resnet152` | `resnet152/densenet169/vgg19` |
-| `--batch_size`  | Training batch size              | 32          | Integer > 0                 |
-| `--lr`          | Initial learning rate            | 0.001       | Float > 0                   |
-| `--epochs`      | Number of training epochs        | 10          | Integer > 0                 |
-| `--augment`     | Enable data augmentation         | True        | True/False                  |
-| `--seed`        | Random seed for reproducibility  | 42          | Integer                     |
-| `--save_dir`    | Directory to save models         | `./models`  | Valid path                  |
-
-## 📊 Performance Evaluation
-
+Parameter	Description	Default	Options
+--model	Model architecture	resnet152	resnet152/densenet169/vgg19
+--batch_size	Training batch size	32	Integer > 0
+--lr	Initial learning rate	0.001	Float > 0
+--epochs	Number of training epochs	10	Integer > 0
+--augment	Enable data augmentation	True	True/False
+--seed	Random seed for reproducibility	42	Integer
+--save_dir	Directory to save models	./models	Valid path
+📊 Performance Evaluation
 Example classification report:
 
-```text
               precision    recall  f1-score   support
 
          T1       0.92      0.91      0.92       240
@@ -110,15 +98,13 @@ Example classification report:
     accuracy                           0.91       953
    macro avg       0.91      0.91      0.91       953
 weighted avg       0.91      0.91      0.91       953
-
 Outputs include:
 
 1.Trained models (.pth) in specified save directory
 2.Prediction results in CSV format
 3.Training logs and metrics
 4.Visualizations (confusion matrices)
-
-## 🤝 Contributing
+🤝 Contributing
 We welcome contributions! Please follow these steps:
 
 1.Fork the repository
