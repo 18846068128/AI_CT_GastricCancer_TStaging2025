@@ -66,11 +66,9 @@ python src/train.py \
 📁 Project Structure
 ct-classification/
 ├── data/                # Raw imaging data (.gitignore)
-├── docs/                # Documentation assets
 ├── models/              # Trained model checkpoints
 ├── outputs/             # Training outputs
 │   ├── predictions/     # Prediction results (CSV)
-│   ├── logs/            # Training logs
 │   └── visualizations/  # Confusion matrices
 ├── src/                 # Source code
 │   ├── dataset.py       # Data loading & preprocessing
