@@ -63,9 +63,12 @@ python src/train.py \
   --epochs 50 \
   --save_dir ./custom_models
 
-##📁 Project Structure
+## 📁 Project Structure
+
+
 ct-classification/
 ├── data/                # Raw imaging data (.gitignore)
+├── docs/                # Documentation assets
 ├── models/              # Trained model checkpoints
 ├── outputs/             # Training outputs
 │   ├── predictions/     # Prediction results (CSV)
@@ -77,19 +80,26 @@ ct-classification/
 ├── requirements.txt     # Python dependencies
 └── README.md            # Project documentation
 
-##⚙️ Configuration Options
-Run python src/train.py --help to see all available parameters:
 
-Parameter	Description	Default	Options
---model	Model architecture	resnet152	resnet152/densenet169/vgg19
---batch_size	Training batch size	32	Integer > 0
---lr	Initial learning rate	0.001	Float > 0
---epochs	Number of training epochs	10	Integer > 0
---augment	Enable data augmentation	True	True/False
---seed	Random seed for reproducibility	42	Integer
---save_dir	Directory to save models	./models	Valid path
-##📊 Performance Evaluation
+## ⚙️ Configuration Options
+
+Run `python src/train.py --help` to see all available parameters:
+
+| Parameter       | Description                      | Default     | Options                     |
+|-----------------|----------------------------------|-------------|-----------------------------|
+| `--model`       | Model architecture               | `resnet152` | `resnet152/densenet169/vgg19` |
+| `--batch_size`  | Training batch size              | 32          | Integer > 0                 |
+| `--lr`          | Initial learning rate            | 0.001       | Float > 0                   |
+| `--epochs`      | Number of training epochs        | 10          | Integer > 0                 |
+| `--augment`     | Enable data augmentation         | True        | True/False                  |
+| `--seed`        | Random seed for reproducibility  | 42          | Integer                     |
+| `--save_dir`    | Directory to save models         | `./models`  | Valid path                  |
+
+## 📊 Performance Evaluation
+
 Example classification report:
+
+```text
               precision    recall  f1-score   support
 
          T1       0.92      0.91      0.92       240
@@ -108,7 +118,7 @@ Outputs include:
 3.Training logs and metrics
 4.Visualizations (confusion matrices)
 
-##🤝 Contributing
+## 🤝 Contributing
 We welcome contributions! Please follow these steps:
 
 1.Fork the repository
