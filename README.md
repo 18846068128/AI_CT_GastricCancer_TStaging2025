@@ -4,6 +4,9 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue.svg)
 
+**数据与代码遵循 MIT 许可证开放，详见 [LICENSE](LICENSE)文件**  
+**Data and code are openly available under the [MIT License](LICENSE)**
+
 Deep learning-based CT image classification tool supporting ResNet/DenseNet/VGG architectures for T1-T4 stage prediction.
 
 ![Architecture Diagram](architecture.png)
@@ -80,20 +83,41 @@ python src/train.py \
 
 ```
 AI_CT_GastricCancer_TStaging2025/
-├── data/ # Raw imaging data (.gitignore)
-│ ├── images/ # CT image directory
-│ └── labels.csv # Image-label mappings
-├── models/ # Trained model checkpoints (.pth files)
-│ ├── model.pth
-├── outputs/ # Training outputs
-│ ├── predictions/ # Prediction results (CSV format)
-├── src/ # Source code
-│ ├── dataset.py # Data loading & preprocessing
-│ ├── model.py # Model architecture definitions
-│ └── train.py # Main training pipeline
-├── requirements.txt # Python dependencies
-├── architecture.png # System architecture diagram
-└── README.md # Project documentation
+├── data/ # Raw medical imaging data
+│   ├── case001.png/ # CT sequence slices for Patient 001
+│   ├── case002.png/ # CT sequence slices for Patient 002
+│   ├── case003.png/ # CT sequence slices for Patient 003
+│   ├── case004.png/ # CT sequence slices for Patient 004
+│   └── labels.json # Image-pathology label mapping (T-stage labels)
+│
+├── models/ # Trained model weight files (.pth format)
+│   ├── models.pth # ResNet-152 optimal model parameters
+│   ├── .gitattributes  # Git LFS configuration for large file tracking (e.g., model weights)
+│   └── md5.txt # Hash checksums for model files
+│
+├── outputs/ # Training process outputs
+│   ├── train_predictions_resnet152.csv # Training set prediction results
+│   └── test_predictions_resnet152.csv # Test set prediction results
+│
+├── splits/ # Dataset split schemes
+│   ├── test.csv # Test set sample IDs (20%)
+│   ├── train.csv # Training set sample IDs (80%)
+│   ├── val1.csv # Validation set 1
+│   └── val2.csv # Validation set 2
+│
+├── src/ # Source code directory
+│   ├── dataset.py # Data loader (includes data augmentation methods)
+│   ├── model.py # Network architecture definitions (ResNet/DenseNet etc.)
+│   └── train.py # Main training pipeline (with early stopping mechanism)
+│
+├── stats/ # Clinical statistical analysis module
+│   ├── clini_sel.csv # Clinical feature selection results (20 clinical variables including age/sex/TNM stage)
+│   └── lasso-290.csv # 290 radiomic features selected by LASSO regression (for nomogram construction)
+│
+├── requirements.txt # Python dependency list (PyTorch 1.10+)
+├── architecture.png # System architecture diagram (data flow & model interactions)
+├── environment.yml # Conda environment configuration (with CUDA 11.3 dependencies)
+└── README.md # Project documentation (includes data preprocessing workflow)
 ```
 
 ## ⚙️ Configuration Options
