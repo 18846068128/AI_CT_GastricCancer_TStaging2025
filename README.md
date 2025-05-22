@@ -116,6 +116,8 @@ Parameter	Description	Default	Options
 
 ## 📊 Performance Evaluation
 Example classification report:
+
+```
               precision    recall  f1-score   support
 
          T1       0.92      0.91      0.92       240
@@ -126,6 +128,8 @@ Example classification report:
     accuracy                           0.91       953
    macro avg       0.91      0.91      0.91       953
 weighted avg       0.91      0.91      0.91       953
+```
+
 Outputs include:
 
 1.Trained models (.pth) in specified save directory
