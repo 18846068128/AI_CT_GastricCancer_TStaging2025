@@ -3,9 +3,7 @@
 ![PyTorch Version](https://img.shields.io/badge/PyTorch-2.0+-red.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue.svg)
-
-**数据与代码遵循 MIT 许可证开放，详见 [LICENSE](LICENSE)文件**  
-**Data and code are openly available under the [MIT License](LICENSE)**
+![Git LFS](https://img.shields.io/badge/Git%20LFS-Enabled-green.svg)
 
 Deep learning-based CT image classification tool supporting ResNet/DenseNet/VGG architectures for T1-T4 stage prediction.
 
@@ -20,15 +18,17 @@ Deep learning-based CT image classification tool supporting ResNet/DenseNet/VGG 
 - [📁 Project Structure](#-project-structure)
 - [⚙️ Configuration Options](#️-configuration-options)
 - [📊 Performance Evaluation](#-performance-evaluation)
+- [📈 Nomogram Construction](#-nomogram-construction)
+- [🔒 Data Integrity](#-data-integrity)
 - [🤝 Contributing](#-contributing)
 
 ## ✨ Key Features
-- **Multi-Architecture Support**: Choose between ResNet-152, DenseNet-169, or VGG-19
-- **Comprehensive Metrics**: Automatic generation of precision/recall/F1-score reports
-- **Training Visualization**: Real-time prediction logging and progress tracking
-- **GPU Acceleration**: Automatic detection and utilization of available GPUs
-- **Advanced Augmentation**: Built-in pipeline for robust model training
-- **Model Management**: Save/load functionality with training checkpointing
+- **Multi-Model Ensemble**: ResNet-152/DenseNet-169/VGG-19 with weighted fusion
+- **Clinical Integration**: Combines imaging features with Lauren classification
+- **Reproducible Splits**: Predefined dataset partitions (Train/Val/Test)
+- **Model Versioning**: Git LFS for large weight file management
+- **Nomogram Support**: Ordered logistic regression for joint prediction
+- **Comprehensive Validation**: 5-fold cross-validation scheme
 
 ## 🚀 Getting Started
 
@@ -39,25 +39,26 @@ Deep learning-based CT image classification tool supporting ResNet/DenseNet/VGG 
 - **Storage**: SSD with minimum 10GB free space
 
 ### Installation
-1. Clone the repository:
+1. Clone with LFS support:
 
 ```
+git lfs install
 git clone https://github.com/18846068128/AI_CT_GastricCancer_TStaging2025.git
-cd AI_CT_GastricCancer_TStaging20251.Install dependencies:
+cd AI_CT_GastricCancer_TStaging2025
 ```
 
-Install dependencies:
+Set up Conda environment:
 
 ```
-pip install -r requirements.txt
+conda env create -f environment.yml
+conda activate gastric_staging
 ```
 
-Prepare your data structure:
+Verify LFS files:
 
 ```
-data/
-├── images/       # Store all CT images (JPEG/PNG format)
-└── labels.csv    # CSV file with columns: [image_name, label]
+git lfs pull
+md5sum -c models/md5.txt
 ```
 
 ### Basic Usage
@@ -65,25 +66,24 @@ Train a model with default parameters (ResNet-152):
 
 ```
 python src/train.py \
-  --data_dir ./data/images \
-  --csv_file ./data/labels.csv
-For custom training (example with DenseNet-169):
+  --data_dir ./data/demo_images \
+  --label_file ./data/demo_labels.json \
+  --split_file ./splits/demo_split.csv
 ```
 
+Generating nomogram:
+
 ```
-python src/train.py \
-  --model densenet169 \
-  --batch_size 64 \
-  --lr 0.001 \
-  --epochs 50 \
-  --save_dir ./custom_models
+python stats/nomogram.py \
+  --clinical_data ./stats/clini_sel.csv \
+  --radiomic_features ./stats/lasso-290.csv
 ```
 
 ## 📁 Project Structure
 
 ```
 AI_CT_GastricCancer_TStaging2025/
-├── sample_data/ # Raw medical imaging data
+├── data/ # Raw medical imaging data
 │   ├── case001.png/ # CT sequence slices for Patient 001
 │   ├── case002.png/ # CT sequence slices for Patient 002
 │   ├── case003.png/ # CT sequence slices for Patient 003
@@ -137,11 +137,8 @@ python src/train.py --help
 | `--seed`     | Random seed for reproducibility | `42`         | Integer                     |
 | `--save_dir` | Directory to save models        | `./models`   | Valid path                  |
 
-
 ## 📊 Performance Evaluation
 Example classification report:
-
-```
               precision    recall  f1-score   support
 
          T1       0.92      0.91      0.92       240
@@ -152,14 +149,37 @@ Example classification report:
     accuracy                           0.91       953
    macro avg       0.91      0.91      0.91       953
 weighted avg       0.91      0.91      0.91       953
-```
-
 Outputs include:
 
 1.Trained models (.pth) in specified save directory
 2.Prediction results in CSV format
 3.Training logs and metrics
 4.Visualizations (confusion matrices)
+
+##📈 Nomogram Construction
+###Feature Selection:
+290 radiomic features (LASSO-selected)
+20 clinical variables (age, Lauren type, etc.)
+
+###Ordinal Regression:
+
+```
+from statsmodels.miscmodels.ordinal_model import OrderedModel
+model = OrderedModel(stage, features, distr='logit')
+```
+
+###Visualization
+Dynamic risk score calculator
+Bootstrap-validated calibration curves
+## 🔒 Data Integrity
+##Model checksums verified via:
+
+```
+git lfs fsck
+md5sum -c models/md5.txt
+```
+
+Dataset splits permanently fixed via SHA-256 hashing
 ## 🤝 Contributing
 We welcome contributions! Please follow these steps:
 
