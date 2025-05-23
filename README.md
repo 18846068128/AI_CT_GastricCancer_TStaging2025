@@ -127,16 +127,16 @@ Run the following command to see all available parameters:
 python src/train.py --help
 ```
 
-```
-Parameter	Description	Default	Options
---model	Model architecture	resnet152	resnet152/densenet169/vgg19
---batch_size	Training batch size	32	Integer > 0
---lr	Initial learning rate	0.001	Float > 0
---epochs	Number of training epochs	10	Integer > 0
---augment	Enable data augmentation	True	True/False
---seed	Random seed for reproducibility	42	Integer
---save_dir	Directory to save models	./models	Valid path
-```
+| Parameter    | Description                     | Default      | Options                     |
+|--------------|---------------------------------|--------------|-----------------------------|
+| `--model`    | Model architecture              | `resnet152`  | `resnet152`/`densenet169`/`vgg19` |
+| `--batch_size` | Training batch size            | `32`         | Integer > 0                 |
+| `--lr`       | Initial learning rate           | `0.001`      | Float > 0                   |
+| `--epochs`   | Number of training epochs       | `10`         | Integer > 0                 |
+| `--augment`  | Enable data augmentation        | `True`       | `True`/`False`              |
+| `--seed`     | Random seed for reproducibility | `42`         | Integer                     |
+| `--save_dir` | Directory to save models        | `./models`   | Valid path                  |
+
 
 ## 📊 Performance Evaluation
 Example classification report:
