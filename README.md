@@ -83,7 +83,7 @@ python src/train.py \
 
 ```
 AI_CT_GastricCancer_TStaging2025/
-├── data/ # Raw medical imaging data
+├── sample_data/ # Raw medical imaging data
 │   ├── case001.png/ # CT sequence slices for Patient 001
 │   ├── case002.png/ # CT sequence slices for Patient 002
 │   ├── case003.png/ # CT sequence slices for Patient 003
