@@ -161,20 +161,20 @@ Outputs include:
 3.Training logs and metrics
 4.Visualizations (confusion matrices)
 
-##📈 Nomogram Construction
+## 📈 Nomogram Construction
 
-###Feature Selection:
+### Feature Selection:
 290 radiomic features (LASSO-selected)
 20 clinical variables (age, Lauren type, etc.)
 
-###Ordinal Regression:
+### Ordinal Regression:
 
 ```
 from statsmodels.miscmodels.ordinal_model import OrderedModel
 model = OrderedModel(stage, features, distr='logit')
 ```
 
-###Visualization
+### Visualization
 
 Dynamic risk score calculator
 Bootstrap-validated calibration curves
