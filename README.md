@@ -138,7 +138,10 @@ python src/train.py --help
 | `--save_dir` | Directory to save models        | `./models`   | Valid path                  |
 
 ## 📊 Performance Evaluation
+
+```
 Example classification report:
+
               precision    recall  f1-score   support
 
          T1       0.92      0.91      0.92       240
@@ -149,6 +152,8 @@ Example classification report:
     accuracy                           0.91       953
    macro avg       0.91      0.91      0.91       953
 weighted avg       0.91      0.91      0.91       953
+```
+
 Outputs include:
 
 1.Trained models (.pth) in specified save directory
@@ -157,6 +162,7 @@ Outputs include:
 4.Visualizations (confusion matrices)
 
 ##📈 Nomogram Construction
+
 ###Feature Selection:
 290 radiomic features (LASSO-selected)
 20 clinical variables (age, Lauren type, etc.)
@@ -169,10 +175,13 @@ model = OrderedModel(stage, features, distr='logit')
 ```
 
 ###Visualization
+
 Dynamic risk score calculator
 Bootstrap-validated calibration curves
+
 ## 🔒 Data Integrity
-##Model checksums verified via:
+
+###Model checksums verified via:
 
 ```
 git lfs fsck
@@ -180,6 +189,7 @@ md5sum -c models/md5.txt
 ```
 
 Dataset splits permanently fixed via SHA-256 hashing
+
 ## 🤝 Contributing
 We welcome contributions! Please follow these steps:
 
