@@ -181,7 +181,7 @@ Bootstrap-validated calibration curves
 
 ## 🔒 Data Integrity
 
-###Model checksums verified via:
+### Model checksums verified via:
 
 ```
 git lfs fsck
